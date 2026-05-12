@@ -1,5 +1,4 @@
 name: Deploy Image
-run-name: Deploy Image
 on:
   push:
     branches:
@@ -12,10 +11,8 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Stop and remove existing container
-        run: |
-          docker compose down || true
-          docker rm -f simple-app-container || true
-
+      - name: Stop and remove
+        run: docker-compose down || true
+          
       - name: Start container
-        run: docker compose up -d
+        run: docker-compose up -d
